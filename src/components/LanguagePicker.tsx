@@ -5,27 +5,34 @@ interface LanguagePickerProps {
   onLanguageChange: (language: Language) => void;
 }
 
-/**
- * PART 2A: Implement LanguagePicker component
- *
- * Requirements:
- * 1. Display English (default) and Spanish options
- * 2. Allow users to switch between languages
- * 3. Show language flags and names
- * 4. Handle language selection
- */
+interface LanguagePickerProps {
+  selectedLanguage: Language;
+  onLanguageChange: (language: Language) => void;
+}
+
+const languageOptions: { code: Language; name: string; flag: string }[] = [
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+];
 
 const LanguagePicker = ({
   selectedLanguage,
   onLanguageChange,
 }: LanguagePickerProps) => {
-  // TODO: Define language options with flags and names
-  // TODO: Create language selection UI
-  // TODO: Handle language change events
-
   return (
     <div className="language-picker">
-      {/* TODO: Implement language picker UI */}
+      <select
+        value={selectedLanguage}
+        name="language"
+        id=""
+        onChange={(e) => onLanguageChange(e.target.value as Language)}
+      >
+        {languageOptions.map((option) => (
+          <option key={option.code} value={option.code}>
+            {option.flag} {option.name}
+          </option>
+        ))}
+      </select>
       <p>Language picker not implemented yet</p>
     </div>
   );

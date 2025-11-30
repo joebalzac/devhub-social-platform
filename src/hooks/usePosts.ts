@@ -23,14 +23,12 @@ export const usePosts = (language: Language) => {
 
   const deletePostApi = async (id: string) => {
     try {
-      setIsLoading(true);
       setError(null);
       await deletePost(id);
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
     } catch (err) {
       setError('Failed to delete post');
       console.log(err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -43,5 +41,6 @@ export const usePosts = (language: Language) => {
     isLoading,
     error,
     deletePostApi,
+    deletePost: deletePostApi,
   };
 };

@@ -18,7 +18,9 @@ export const useProjectAnalytics = () => {
 
       const metrics: ProjectQualityMetric[] = projectDataList.map(
         (projectData) => {
-          const scores = projectData.submissions.map((s) => s.score);
+          const scores = projectData.submissions.map(
+            (submission) => submission.score
+          );
 
           const average =
             scores.length > 0
